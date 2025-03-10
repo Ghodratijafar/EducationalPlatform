@@ -1,0 +1,122 @@
+[
+    {
+        "model": "courses.course",
+        "pk": 1,
+        "fields": {
+            "title": "برنامه‌نویسی پایتون برای مبتدیان",
+            "slug": "python-programming-for-beginners",
+            "description": "در این دوره با مفاهیم اولیه برنامه‌نویسی و زبان پایتون آشنا خواهید شد.",
+            "price": "999000",
+            "image": "courses/python.png",
+            "created_at": "2024-03-10T12:00:00+03:30",
+            "updated_at": "2024-03-10T12:00:00+03:30",
+            "level": "beginner",
+            "duration": 1200,
+            "prerequisites": "",
+            "learning_objectives": [],
+            "tags": [],
+            "is_published": true
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 2,
+        "fields": {
+            "title": "طراحی وب با React.js",
+            "slug": "web-design-with-reactjs",
+            "description": "آموزش جامع React.js برای ساخت رابط‌های کاربری مدرن",
+            "price": "1499000",
+            "image": "courses/react.png",
+            "created_at": "2024-03-10T12:00:00+03:30",
+            "updated_at": "2024-03-10T12:00:00+03:30",
+            "level": "intermediate",
+            "duration": 1800,
+            "prerequisites": "آشنایی با HTML, CSS و JavaScript",
+            "learning_objectives": [],
+            "tags": [],
+            "is_published": true
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 3,
+        "fields": {
+            "title": "هوش مصنوعی و یادگیری ماشین",
+            "slug": "artificial-intelligence-and-machine-learning",
+            "description": "آشنایی با مفاهیم هوش مصنوعی و پیاده‌سازی الگوریتم‌های یادگیری ماشین",
+            "price": "1999000",
+            "image": "courses/ai.png",
+            "created_at": "2024-03-10T12:00:00+03:30",
+            "updated_at": "2024-03-10T12:00:00+03:30",
+            "level": "advanced",
+            "duration": 2400,
+            "prerequisites": "آشنایی با پایتون و مفاهیم ریاضی",
+            "learning_objectives": [],
+            "tags": [],
+            "is_published": true
+        }
+    },
+    {
+        "model": "courses.featuredcourse",
+        "pk": 1,
+        "fields": {
+            "course": 1,
+            "priority": 1,
+            "created_at": "2024-03-10T12:00:00+03:30"
+        }
+    },
+    {
+        "model": "courses.featuredcourse",
+        "pk": 2,
+        "fields": {
+            "course": 2,
+            "priority": 2,
+            "created_at": "2024-03-10T12:00:00+03:30"
+        }
+    },
+    {
+        "model": "courses.featuredcourse",
+        "pk": 3,
+        "fields": {
+            "course": 3,
+            "priority": 3,
+            "created_at": "2024-03-10T12:00:00+03:30"
+        }
+    },
+    {
+        "model": "courses.testimonial",
+        "pk": 1,
+        "fields": {
+            "name": "سارا محمدی",
+            "role": "توسعه‌دهنده وب",
+            "content": "دوره‌های این پلتفرم به من کمک کرد تا در مسیر شغلی‌ام پیشرفت کنم.",
+            "avatar": "testimonials/avatar1.jpg",
+            "rating": 5,
+            "created_at": "2024-03-10T12:00:00+03:30"
+        }
+    },
+    {
+        "model": "courses.testimonial",
+        "pk": 2,
+        "fields": {
+            "name": "علی رضایی",
+            "role": "دانشجوی کامپیوتر",
+            "content": "محتوای آموزشی با کیفیت و مدرسین حرفه‌ای، تجربه یادگیری عالی را رقم زدند.",
+            "avatar": "testimonials/avatar2.jpg",
+            "rating": 5,
+            "created_at": "2024-03-10T12:00:00+03:30"
+        }
+    },
+    {
+        "model": "courses.testimonial",
+        "pk": 3,
+        "fields": {
+            "name": "مریم کریمی",
+            "role": "مدیر پروژه",
+            "content": "انعطاف‌پذیری در یادگیری و پشتیبانی ۲۴/۷ از ویژگی‌های برجسته این پلتفرم است.",
+            "avatar": "testimonials/avatar3.jpg",
+            "rating": 5,
+            "created_at": "2024-03-10T12:00:00+03:30"
+        }
+    }
+] 
