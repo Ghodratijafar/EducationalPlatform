@@ -1,0 +1,69 @@
+{
+    "app": {
+        "title": "Educational Platform"
+    },
+    "nav": {
+        "home": "Home",
+        "courses": "Courses",
+        "assignments": "Assignments",
+        "blog": "Blog",
+        "profile": "Profile",
+        "login": "Login",
+        "logout": "Logout",
+        "openSettings": "Open settings",
+        "register": "Register"
+    },
+    "home": {
+        "welcome": "Welcome to Educational Platform",
+        "subtitle": "Start your learning journey today"
+    },
+    "common": {
+        "retry": "Try Again",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success"
+    },
+    "errors": {
+        "auth": {
+            "required": "Authentication required. Please log in.",
+            "invalid": "Invalid credentials",
+            "expired": "Session expired. Please log in again."
+        },
+        "courses": {
+            "fetch": "Failed to fetch courses",
+            "notFound": "Course not found",
+            "enrollment": "Failed to enroll in course",
+            "rating": "Failed to submit rating"
+        }
+    },
+    "courses": {
+        "search": "Search courses...",
+        "noCourses": "No courses found",
+        "viewDetails": "View Details",
+        "free": "Free",
+        "sort": {
+            "newest": "Newest First",
+            "priceLow": "Price: Low to High",
+            "priceHigh": "Price: High to Low",
+            "rating": "Highest Rated"
+        },
+        "level": {
+            "all": "All Levels",
+            "beginner": "Beginner",
+            "intermediate": "Intermediate",
+            "advanced": "Advanced"
+        },
+        "noInstructor": "No instructor assigned",
+        "noTitle": "No title specified",
+        "noBio": "Instructor bio not available",
+        "featured": "Featured Courses",
+        "browse": "Browse Courses"
+    },
+    "auth": {
+        "register": "Register",
+        "login": "Login"
+    },
+    "testimonials": {
+        "title": "Student Testimonials"
+    }
+} 
