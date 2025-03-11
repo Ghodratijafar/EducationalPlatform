@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -10,12 +10,12 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Avatar,
-  Rating,
-  Stack,
-  CardActions,
   CircularProgress,
   Alert,
+  Stack,
+  CardActions,
+  Avatar,
+  Rating,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import courseService from '../services/courseService';
@@ -46,8 +46,7 @@ const TestimonialCard = styled(Card)(({ theme }) => ({
 }));
 
 const Home = () => {
-  const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
+  const { i18n } = useTranslation();
   const [featuredCourses, setFeaturedCourses] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -96,28 +95,7 @@ const Home = () => {
   return (
     <Box dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
-      <Box
-        sx={{
-          background: 'linear-gradient(45deg, #2196F3 30%, #7E57C2 90%)',
-          color: 'white',
-          py: { xs: 8, md: 12 },
-          textAlign: 'center',
-          borderRadius: { xs: 0, md: '0 0 50px 50px' },
-          boxShadow: '0 3px 5px 2px rgba(33, 150, 243, .3)',
-          position: 'relative',
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'url(/images/pattern.png) repeat',
-            opacity: 0.1,
-          }
-        }}
-      >
+      <HeroSection>
         <Container maxWidth="md">
           <Typography
             variant="h1"
@@ -196,7 +174,7 @@ const Home = () => {
             </Button>
           </Stack>
         </Container>
-      </Box>
+      </HeroSection>
 
       {/* Featured Courses Section */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
@@ -232,18 +210,7 @@ const Home = () => {
           <Grid container spacing={4}>
             {featuredCourses.map((course) => (
               <Grid item xs={12} sm={6} md={4} key={course.id}>
-                <Card
-                  sx={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    transition: 'transform 0.2s ease-in-out',
-                    '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: '0 12px 20px rgba(0,0,0,0.1)',
-                    }
-                  }}
-                >
+                <StyledCard>
                   <CardMedia
                     component="img"
                     height="200"
@@ -309,7 +276,7 @@ const Home = () => {
                       {isRTL ? 'مشاهده جزئیات' : 'View Details'}
                     </Button>
                   </CardActions>
-                </Card>
+                </StyledCard>
               </Grid>
             ))}
           </Grid>
@@ -317,13 +284,7 @@ const Home = () => {
       </Container>
 
       {/* Testimonials Section */}
-      <Box
-        sx={{
-          bgcolor: 'grey.50',
-          py: { xs: 6, md: 8 },
-          borderRadius: { md: '50px 50px 0 0' }
-        }}
-      >
+      <Box sx={{ bgcolor: 'grey.50', py: { xs: 6, md: 8 }, borderRadius: { md: '50px 50px 0 0' } }}>
         <Container maxWidth="lg">
           <Typography
             variant="h2"
@@ -350,19 +311,7 @@ const Home = () => {
           <Grid container spacing={4}>
             {testimonials.map((testimonial) => (
               <Grid item xs={12} md={4} key={testimonial.id}>
-                <Card
-                  sx={{
-                    height: '100%',
-                    textAlign: 'center',
-                    p: 3,
-                    borderRadius: '20px',
-                    transition: 'transform 0.2s ease-in-out',
-                    '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: '0 12px 20px rgba(0,0,0,0.1)',
-                    }
-                  }}
-                >
+                <TestimonialCard>
                   <Avatar
                     src={testimonial.avatar || '/images/default-avatar.jpg'}
                     sx={{
@@ -385,7 +334,7 @@ const Home = () => {
                     {testimonial.comment}
                   </Typography>
                   <Rating value={testimonial.rating} readOnly sx={{ mt: 'auto' }} />
-                </Card>
+                </TestimonialCard>
               </Grid>
             ))}
           </Grid>

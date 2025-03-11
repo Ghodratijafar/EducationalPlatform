@@ -34,7 +34,7 @@ import {
 import { logout } from '../../store/slices/authSlice';
 
 const Navbar = () => {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isAuthenticated, user } = useSelector((state) => state.auth);

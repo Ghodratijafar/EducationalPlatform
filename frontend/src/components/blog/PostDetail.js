@@ -22,17 +22,14 @@ import {
     Grid,
     Collapse,
 } from '@mui/material';
-import {
-    Favorite as FavoriteIcon,
-    FavoriteBorder as FavoriteBorderIcon,
-    Bookmark as BookmarkIcon,
-    BookmarkBorder as BookmarkBorderIcon,
-    Share as ShareIcon,
-    AccessTime as AccessTimeIcon,
-    Visibility as VisibilityIcon,
-    Comment as CommentIcon,
-    Reply as ReplyIcon,
-} from '@mui/icons-material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ShareIcon from '@mui/icons-material/Share';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import ReplyIcon from '@mui/icons-material/Reply';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import blogService from '../../services/blogService';
 
 const ErrorMessage = ({ error, onClose }) => (

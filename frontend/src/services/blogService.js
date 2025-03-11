@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '../config';
-import { getAuthToken } from '../utils/auth';
+import { API_BASE_URL } from '../config';
 
 const getHeaders = () => {
     const token = localStorage.getItem('auth_token');
@@ -16,75 +15,75 @@ const getHeaders = () => {
 const blogService = {
     // Posts
     getPosts: async (params = {}) => {
-        const response = await axios.get(`${API_URL}/blog/posts/`, { params });
+        const response = await axios.get(`${API_BASE_URL}/blog/posts/`, { params });
         return response.data;
     },
 
     getPost: async (slug) => {
-        const response = await axios.get(`${API_URL}/blog/posts/${slug}/`);
+        const response = await axios.get(`${API_BASE_URL}/blog/posts/${slug}/`);
         return response.data;
     },
 
     createPost: async (postData) => {
-        const response = await axios.post(`${API_URL}/blog/posts/`, postData, { headers: getHeaders() });
+        const response = await axios.post(`${API_BASE_URL}/blog/posts/`, postData, { headers: getHeaders() });
         return response.data;
     },
 
     updatePost: async (slug, postData) => {
-        const response = await axios.put(`${API_URL}/blog/posts/${slug}/`, postData, { headers: getHeaders() });
+        const response = await axios.put(`${API_BASE_URL}/blog/posts/${slug}/`, postData, { headers: getHeaders() });
         return response.data;
     },
 
     deletePost: async (slug) => {
-        await axios.delete(`${API_URL}/blog/posts/${slug}/`, { headers: getHeaders() });
+        await axios.delete(`${API_BASE_URL}/blog/posts/${slug}/`, { headers: getHeaders() });
     },
 
     likePost: async (slug) => {
-        const response = await axios.post(`${API_URL}/blog/posts/${slug}/like/`, {}, { headers: getHeaders() });
+        const response = await axios.post(`${API_BASE_URL}/blog/posts/${slug}/like/`, {}, { headers: getHeaders() });
         return response.data;
     },
 
     bookmarkPost: async (slug) => {
-        const response = await axios.post(`${API_URL}/blog/posts/${slug}/bookmark/`, {}, { headers: getHeaders() });
+        const response = await axios.post(`${API_BASE_URL}/blog/posts/${slug}/bookmark/`, {}, { headers: getHeaders() });
         return response.data;
     },
 
     sharePost: async (slug, platform) => {
-        const response = await axios.post(`${API_URL}/blog/posts/${slug}/share/`, { platform }, { headers: getHeaders() });
+        const response = await axios.post(`${API_BASE_URL}/blog/posts/${slug}/share/`, { platform }, { headers: getHeaders() });
         return response.data;
     },
 
     // Categories
     getCategories: async () => {
-        const response = await axios.get(`${API_URL}/blog/categories/`);
+        const response = await axios.get(`${API_BASE_URL}/blog/categories/`);
         return response.data;
     },
 
     getCategory: async (slug) => {
-        const response = await axios.get(`${API_URL}/blog/categories/${slug}/`);
+        const response = await axios.get(`${API_BASE_URL}/blog/categories/${slug}/`);
         return response.data;
     },
 
     getCategoryPosts: async (slug, params = {}) => {
-        const response = await axios.get(`${API_URL}/blog/categories/${slug}/posts/`, { params });
+        const response = await axios.get(`${API_BASE_URL}/blog/categories/${slug}/posts/`, { params });
         return response.data;
     },
 
     // Tags
     getTags: async () => {
-        const response = await axios.get(`${API_URL}/blog/tags/`);
+        const response = await axios.get(`${API_BASE_URL}/blog/tags/`);
         return response.data;
     },
 
     getTag: async (slug) => {
-        const response = await axios.get(`${API_URL}/blog/tags/${slug}/`);
+        const response = await axios.get(`${API_BASE_URL}/blog/tags/${slug}/`);
         return response.data;
     },
 
     // Comments
     getComments: async (postId) => {
         try {
-            const response = await axios.get(`${API_URL}/blog/comments/`, {
+            const response = await axios.get(`${API_BASE_URL}/blog/comments/`, {
                 params: { post: postId }
             });
             return response.data;
@@ -98,7 +97,7 @@ const blogService = {
         try {
             const headers = getHeaders();
             const response = await axios.post(
-                `${API_URL}/blog/comments/`, 
+                `${API_BASE_URL}/blog/comments/`, 
                 {
                     content: commentData.content,
                     post: commentData.postId || commentData.post_id || commentData.post
@@ -119,7 +118,7 @@ const blogService = {
         try {
             const headers = getHeaders();
             const response = await axios.put(
-                `${API_URL}/blog/comments/${commentId}/`,
+                `${API_BASE_URL}/blog/comments/${commentId}/`,
                 {
                     content: commentData.content,
                     post: commentData.postId || commentData.post_id || commentData.post
@@ -139,7 +138,7 @@ const blogService = {
     deleteComment: async (commentId) => {
         try {
             const headers = getHeaders();
-            await axios.delete(`${API_URL}/blog/comments/${commentId}/`, { headers });
+            await axios.delete(`${API_BASE_URL}/blog/comments/${commentId}/`, { headers });
         } catch (error) {
             console.error('Delete comment error:', error);
             if (error.message === 'Authentication required') {
@@ -153,7 +152,7 @@ const blogService = {
         try {
             const headers = getHeaders();
             const response = await axios.post(
-                `${API_URL}/blog/comments/${commentId}/like/`,
+                `${API_BASE_URL}/blog/comments/${commentId}/like/`,
                 { post: postId },
                 { headers }
             );
@@ -183,7 +182,7 @@ const blogService = {
             };
             
             const response = await axios.post(
-                `${API_URL}/blog/comments/${commentId}/reply/`,
+                `${API_BASE_URL}/blog/comments/${commentId}/reply/`,
                 requestData,
                 { headers }
             );
@@ -202,7 +201,7 @@ const blogService = {
 
     // Post View Count
     incrementViewCount: async (slug) => {
-        const response = await axios.post(`${API_URL}/blog/posts/${slug}/view/`);
+        const response = await axios.post(`${API_BASE_URL}/blog/posts/${slug}/view/`);
         return response.data;
     },
 

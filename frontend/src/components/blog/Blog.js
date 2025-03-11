@@ -23,7 +23,6 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CommentIcon from '@mui/icons-material/Comment';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -35,7 +34,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import blogService from '../../services/blogService';
 
 const Blog = () => {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const isRTL = i18n.language === 'fa';
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);

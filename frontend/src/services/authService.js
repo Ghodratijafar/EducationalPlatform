@@ -6,7 +6,7 @@ const authService = {
   login: async (credentials) => {
     try {
       // First try to get the token
-      const response = await axios.post(`${API_URL}/token/`, {
+      const response = await axios.post(`${API_URL}/api/token/`, {
         email: credentials.username,     // Changed from username to email
         password: credentials.password
       });
@@ -17,7 +17,7 @@ const authService = {
         localStorage.setItem('refresh_token', response.data.refresh);
         
         // Get user data after successful login
-        const userResponse = await axios.get(`${API_URL}/users/me/`, {
+        const userResponse = await axios.get(`${API_URL}/api/users/me/`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -48,10 +48,10 @@ const authService = {
         username: userData.username,
         email: userData.email,
         password: userData.password,
-        confirm_password: userData.confirmPassword || userData.password  // Changed from password2 to confirm_password
+        confirm_password: userData.confirmPassword || userData.password
       };
       
-      const response = await axios.post(`${API_URL}/users/register/`, registerData);
+      const response = await axios.post(`${API_URL}/api/users/register/`, registerData);
       
       if (response.data) {
         // After successful registration, login the user
@@ -65,7 +65,6 @@ const authService = {
       console.error('Registration error:', error);
       if (error.response?.data) {
         const errorData = error.response.data;
-        // Handle both password2 and confirm_password errors
         const errorMessage = 
           errorData.detail || 
           errorData.message ||
@@ -88,7 +87,7 @@ const authService = {
       const token = localStorage.getItem('auth_token');
       if (!token) return null;
 
-      const response = await axios.get(`${API_URL}/users/me/`, {
+      const response = await axios.get(`${API_URL}/api/users/me/`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -112,7 +111,7 @@ const authService = {
       const refreshToken = localStorage.getItem('refresh_token');
       if (!refreshToken) return null;
 
-      const response = await axios.post(`${API_URL}/token/refresh/`, {
+      const response = await axios.post(`${API_URL}/api/token/refresh/`, {
         refresh: refreshToken
       });
 
