@@ -26,13 +26,19 @@ from .serializers import (
 
 # Create your views here.
 
+from rest_framework.permissions import IsAuthenticated, AllowAny
+
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = []
 
-    def perform_create(self, serializer):
-        serializer.save(instructor=self.request.user)
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     @action(detail=True, methods=['post'])
     def enroll(self, request, pk=None):

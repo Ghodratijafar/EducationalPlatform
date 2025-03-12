@@ -80,14 +80,18 @@ const CourseList = () => {
   const coursesPerPage = 9;
 
   useEffect(() => {
-    console.log('CourseList mounted, checking auth:', isAuthenticated);
-    if (!isAuthenticated) {
-      navigate('/login', { state: { from: '/courses' } });
-      return;
-    }
-    console.log('Dispatching fetchCourses');
-    dispatch(fetchCourses());
-  }, [dispatch, isAuthenticated, navigate]);
+      console.log('CourseList mounted');
+      dispatch(fetchCourses());
+  }, [dispatch]);
+
+  const handleCourseAction = (courseId) => {
+      if (isAuthenticated) {
+          navigate(`/courses/${courseId}`);
+      } else {
+          navigate('/login', { state: { from: `/courses/${courseId}` } });
+      }
+  };
+
 
   useEffect(() => {
     console.log('Courses updated:', courses);
@@ -309,12 +313,12 @@ const CourseList = () => {
                       </Typography>
                     </Box>
                     <Button
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      onClick={() => navigate(`/courses/${course.id}`)}
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleCourseAction(course.id)}
                     >
-                      {t('courses.viewDetails')}
+                        {isAuthenticated ? t('courses.viewDetails') : t('courses.login')}
                     </Button>
                   </CardContent>
                 </StyledCard>

@@ -3,11 +3,14 @@ import i18n from '../i18n';
 
 const API_URL = 'http://localhost:8000/api';
 
-// Add request interceptor for auth token
+// تغییر interceptor
 axios.interceptors.request.use(
     (config) => {
+        const protectedEndpoints = ['/enroll/', '/enrolled/', '/rate/', '/progress/', '/users/me/'];
+        const isProtectedEndpoint = protectedEndpoints.some(endpoint => config.url.includes(endpoint));
+        
         const token = localStorage.getItem('token');
-        if (token) {
+        if (token && isProtectedEndpoint) {
             config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
@@ -16,6 +19,7 @@ axios.interceptors.request.use(
         return Promise.reject(error);
     }
 );
+
 
 // Add response interceptor to handle errors
 axios.interceptors.response.use(
@@ -36,13 +40,10 @@ axios.interceptors.response.use(
 );
 
 const courseService = {
+    // تغییر متد getAllCourses
     async getAllCourses() {
         try {
             console.log('Fetching from:', `${API_URL}/courses/`);
-            const token = localStorage.getItem('token');
-            if (!token) {
-                throw new Error(i18n.t('errors.auth.required'));
-            }
             const response = await axios.get(`${API_URL}/courses/`);
             console.log('API Response:', response.data);
             return response.data;
@@ -54,11 +55,9 @@ const courseService = {
 
     async getCourseById(courseId) {
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                throw new Error(i18n.t('errors.auth.required'));
-            }
+            console.log('Fetching course details:', `${API_URL}/courses/${courseId}/`);
             const response = await axios.get(`${API_URL}/courses/${courseId}/`);
+            console.log('Course details response:', response.data);
             return response.data;
         } catch (error) {
             console.error('Error fetching course:', error);
